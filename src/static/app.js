@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Build participants list HTML
         const participantsList = details.participants.length > 0
           ? `<ul style="
-                margin: 0.5em 0 0 0;
+                margin: 0.5em 0 0 0; 
                 padding: 0;
                 list-style: none;
                 display: flex;
