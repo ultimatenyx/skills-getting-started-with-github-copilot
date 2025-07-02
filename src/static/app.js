@@ -22,12 +22,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Build participants list HTML
         const participantsList = details.participants.length > 0
-          ? `<ul style="margin: 0.5em 0 0 1.2em; color: #334155;">
+          ? `<ul style="
+                margin: 0.5em 0 0 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5em;
+              ">
               ${details.participants.map(
-                p => `<li style="margin-bottom: 0.2em;">${p}</li>`
+                p => {
+                  // Use initials for avatar
+                  const initials = p.split('@')[0].split(/[ ._-]/).map(s => s[0]?.toUpperCase() || '').join('').slice(0,2);
+                  return `
+                    <li style="
+                      display: flex;
+                      align-items: center;
+                      background: #e0e7ff;
+                      border-radius: 20px;
+                      padding: 0.25em 0.75em 0.25em 0.25em;
+                      box-shadow: 0 1px 2px rgba(30,64,175,0.07);
+                      font-size: 0.97em;
+                    ">
+                      <span style="
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 2em;
+                        height: 2em;
+                        background: #6366f1;
+                        color: #fff;
+                        border-radius: 50%;
+                        font-weight: bold;
+                        margin-right: 0.5em;
+                        font-size: 1em;
+                        box-shadow: 0 1px 2px rgba(99,102,241,0.10);
+                      ">${initials}</span>
+                      <span style="color: #3730a3;">${p}</span>
+                    </li>
+                  `;
+                }
               ).join("")}
             </ul>`
-          : `<ul style="margin: 0.5em 0 0 1.2em; color: #64748b;">
+          : `<ul style="margin: 0.5em 0 0 0; padding: 0 0 0 1.2em; color: #64748b;">
               <li style="font-style: italic;">No participants yet</li>
             </ul>`;
 
